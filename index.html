@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>franapp</title>
-  <link rel="icon" href="https://live.pystatic.com/webassets/pwa/pedidosya.ico"/>
+  <link rel="icon" href="assets/favicon.svg"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=TT+Commons+Pro:wght@500;600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css"/>
@@ -34,6 +34,10 @@
     </div>
 
     <div class="py-header__right">
+      <button id="btnCart" class="profile" aria-label="Carrito">
+        <div class="avatar"></div><span>Carrito</span>
+        <span id="cartCount" class="badge-count">0</span>
+      </button>
       <button class="profile" aria-haspopup="true" aria-expanded="false">
         <div class="avatar"></div>
         <span>Mi Perfil</span>
@@ -105,7 +109,7 @@
 
   <footer class="footer">
     <div class="footer-inner">
-      <p class="muted">© <span id="year"></span> franapp — inspirada en la experiencia de PedidosYa.</p>
+      <p class="muted">© <span id="year"></span> franapp — inspirada en la experiencia de franapp.</p>
       <nav class="footer-links">
         <a href="#" aria-label="Términos y condiciones">Términos</a>
         <span>·</span>
@@ -117,5 +121,23 @@
   </footer>
 
   <script src="app.js" defer></script>
+
+  <div id="drawerOverlay" class="drawer-overlay"></div>
+  <aside id="cartDrawer" class="drawer" aria-hidden="true">
+    <header>
+      <strong>Tu carrito</strong>
+      <button id="btnClearCart" class="btn-link">Vaciar</button>
+    </header>
+    <div class="body" id="drawerList"></div>
+    <div class="totals" id="drawerTotals">
+      <div class="row"><span>Subtotal</span><strong id="subTot">$0</strong></div>
+      <div class="row"><span>Envío</span><strong id="ship">$0</strong></div>
+      <div class="row"><span>Total</span><strong id="grand">$0</strong></div>
+    </div>
+    <div class="checkout">
+      <button id="btnGoCheckout" class="btn-primary">Finalizar compra</button>
+    </div>
+  </aside>
+
 </body>
 </html>

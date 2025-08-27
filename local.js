@@ -1,7 +1,65 @@
+
+// ---- Shared cart storage ----
+function getCart(){ try{ return JSON.parse(localStorage.getItem("franapp_cart")||"{}"); }catch(e){ return {}; } }
+function setCart(obj){ localStorage.setItem("franapp_cart", JSON.stringify(obj)); }
+function cartCount(){ const c = getCart(); return Object.values(c).reduce((a,b)=> a + (b.qty||0), 0); }
+function updateCartBadge(){ const el = document.getElementById("cartCount"); if(el) el.textContent = cartCount(); }
+function formatMoney(n){ return "$"+(n).toLocaleString("es-AR"); }
+
+function openDrawer(){ document.getElementById("drawerOverlay").classList.add("open"); document.getElementById("cartDrawer").classList.add("open"); renderDrawer(); }
+function closeDrawer(){ document.getElementById("drawerOverlay").classList.remove("open"); document.getElementById("cartDrawer").classList.remove("open"); }
+
+function renderDrawer(){
+  const listEl = document.getElementById("drawerList");
+  const totalsEl = { sub: $("#subTot"), ship: $("#ship"), grand: $("#grand") };
+  const cart = getCart();
+  const entries = Object.values(cart);
+  listEl.innerHTML = "";
+  let subtotal = 0;
+  entries.forEach(e=>{
+    const row = document.createElement("div");
+    row.className = "item-row";
+    row.innerHTML = `
+      <div>
+        <h5>${e.name}</h5>
+        <div class="muted">${e.category||""}</div>
+      </div>
+      <div class="qty">
+        <button data-id="${e.id}" data-act="minus">−</button>
+        <span>${e.qty}</span>
+        <button data-id="${e.id}" data-act="plus">+</button>
+      </div>
+      <div style="text-align:right;font-weight:700">${formatMoney(e.price*e.qty)}</div>
+    `;
+    listEl.appendChild(row);
+    subtotal += e.price*e.qty;
+  });
+  const shipping = entries.length ? 700 : 0;
+  totalsEl.sub.textContent = formatMoney(subtotal);
+  totalsEl.ship.textContent = formatMoney(shipping);
+  totalsEl.grand.textContent = formatMoney(subtotal + shipping);
+
+  listEl.onclick = (ev)=>{
+    const btn = ev.target.closest("button[data-id]");
+    if(!btn) return;
+    const id = btn.dataset.id, act = btn.dataset.act;
+    const cart = getCart();
+    if(!cart[id]) return;
+    cart[id].qty = Math.max(0, cart[id].qty + (act==="plus"?1:-1));
+    if(cart[id].qty===0) delete cart[id];
+    setCart(cart);
+    renderDrawer();
+    updateCartBadge();
+    // reflect on menu rows if present
+    const qEl = document.getElementById("q-"+id);
+    if(qEl) qEl.textContent = cart[id]?.qty || 0;
+  };
+}
+
 const $ = (s, root=document) => root.querySelector(s);
 const $$ = (s, root=document) => Array.from(root.querySelectorAll(s));
 
-const cart = new Map(); // key: itemId, value: {item, qty}
+// cart per-item now in localStorage
 
 function getParam(name){
   const url = new URL(location.href);
@@ -49,7 +107,9 @@ function renderTabs(cats, onClick){
 function renderItems(items){
   const list = $("#menuList");
   list.innerHTML = "";
+  const cart = getCart();
   items.forEach(item=>{
+    const qty = cart[item.id]?.qty || 0;
     const el = document.createElement("div");
     el.className = "item";
     el.innerHTML = `
@@ -62,7 +122,7 @@ function renderItems(items){
         <img src="${item.photo}" alt="${item.name}">
         <div class="qty">
           <button aria-label="Menos" data-id="${item.id}" data-act="minus">−</button>
-          <span id="q-${item.id}">${cart.get(item.id)?.qty||0}</span>
+          <span id="q-${item.id}">${qty}</span>
           <button aria-label="Más" data-id="${item.id}" data-act="plus">+</button>
         </div>
       </div>
@@ -76,12 +136,14 @@ function renderItems(items){
     const id = btn.dataset.id;
     const act = btn.dataset.act;
     const itm = items.find(x=>x.id===id);
-    const cur = cart.get(id) || {item:itm, qty:0};
+    const cart = getCart();
+    const cur = cart[id] || {id:itm.id, name:itm.name, price:itm.price, category:itm.category, qty:0};
     cur.qty = Math.max(0, cur.qty + (act==="plus" ? 1 : -1));
-    if(cur.qty===0) cart.delete(id); else cart.set(id, cur);
+    if(cur.qty===0) delete cart[id]; else cart[id] = cur;
+    setCart(cart);
     const qEl = document.getElementById("q-"+id);
-    if(qEl) qEl.textContent = cur.qty;
-    renderCart();
+    if(qEl) qEl.textContent = cart[id]?.qty || 0;
+    updateCartBadge();
   }, {once:false});
 }
 

@@ -1,4 +1,4 @@
-# franapp (starter tipo PedidosYa)
+# franapp (starter tipo franapp)
 
 Estructura:
 - `index.html` + `styles.css` + `app.js`: Home con header sticky, búsqueda, carrusel de categorías, tarjetas de locales y skeleton shimmer.

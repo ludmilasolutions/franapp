@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>franapp · Local</title>
-  <link rel="icon" href="https://live.pystatic.com/webassets/pwa/pedidosya.ico"/>
+  <link rel="icon" href="assets/favicon.svg"/>
   <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
@@ -27,7 +27,7 @@
         </button>
       </div>
     </div>
-    <div class="py-header__right"></div>
+    <div class="py-header__right"><button id="btnCart" class="profile" aria-label="Carrito"><div class="avatar"></div><span>Carrito</span><span id="cartCount" class="badge-count">0</span></button></div>
   </header>
 
   <main class="container">
@@ -68,5 +68,23 @@
   </div>
 
   <script src="local.js" defer></script>
+
+  <div id="drawerOverlay" class="drawer-overlay"></div>
+  <aside id="cartDrawer" class="drawer" aria-hidden="true">
+    <header>
+      <strong>Tu carrito</strong>
+      <button id="btnClearCart" class="btn-link">Vaciar</button>
+    </header>
+    <div class="body" id="drawerList"></div>
+    <div class="totals" id="drawerTotals">
+      <div class="row"><span>Subtotal</span><strong id="subTot">$0</strong></div>
+      <div class="row"><span>Envío</span><strong id="ship">$0</strong></div>
+      <div class="row"><span>Total</span><strong id="grand">$0</strong></div>
+    </div>
+    <div class="checkout">
+      <button id="btnGoCheckout" class="btn-primary">Finalizar compra</button>
+    </div>
+  </aside>
+
 </body>
 </html>

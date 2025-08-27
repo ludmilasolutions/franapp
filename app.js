@@ -5,7 +5,7 @@ const state = { data:null, filtered:null, categories:[], location:"San Luis 4526
 
 const categoryColors = {
   "Restaurantes":"#FFB526",
-  "PedidosYa Market":"#EA044E",
+  "franapp Market":"#EA044E",
   "Mercados":"#9FE0EF",
   "Café & Deli":"#FFDA92",
   "Helados":"#F3F2F4",
@@ -17,16 +17,16 @@ const categoryColors = {
 };
 
 const categoryImages = {
-  "Restaurantes":"https://pedidosya.dhmedia.io/image/pedidosya/only-home-squad/grid-masonry/quilted/restaurants-foto-q-v2.png?width=132&dpi=2&webp=1",
-  "PedidosYa Market":"https://pedidosya.dhmedia.io/image/pedidosya/only-home-squad/grid-masonry/quilted/dmarts-foto-q.png?width=132&dpi=2&webp=1",
-  "Mercados":"https://pedidosya.dhmedia.io/image/pedidosya/only-home-squad/grid-masonry/quilted/mercados-foto-q-v2.png?width=132&dpi=2&webp=1",
-  "Café & Deli":"https://pedidosya.dhmedia.io/image/pedidosya/only-home-squad/grid-masonry/quilted/cafe-foto-q-v2.png?width=132&dpi=2&webp=1",
-  "Helados":"https://pedidosya.dhmedia.io/image/pedidosya/only-home-squad/grid-masonry/quilted/helados-foto-q-v2.png?width=132&dpi=2&webp=1",
-  "Kioscos":"https://pedidosya.dhmedia.io/image/pedidosya/only-home-squad/grid-masonry/quilted/kioscos-foto-q.png?width=132&dpi=2&webp=1",
-  "Farmacias":"https://pedidosya.dhmedia.io/image/pedidosya/only-home-squad/grid-masonry/quilted/farmacias-foto-q.png?width=132&dpi=2&webp=1",
-  "Mascotas":"https://pedidosya.dhmedia.io/image/pedidosya/only-home-squad/grid-masonry/quilted/mascotas-foto-q.png?width=132&dpi=2&webp=1",
-  "Bebidas":"https://pedidosya.dhmedia.io/image/pedidosya/only-home-squad/grid-masonry/quilted/drinks-foto-q.png?width=132&dpi=2&webp=1",
-  "Tiendas":"https://pedidosya.dhmedia.io/image/pedidosya/only-home-squad/grid-masonry/quilted/tiendas-foto-q.png?width=132&dpi=2&webp=1"
+  "Restaurantes":"assets/ic-restaurant.svg",
+  "franapp Market":"assets/ic-market.svg",
+  "Mercados":"assets/ic-market.svg",
+  "Café & Deli":"assets/ic-coffee.svg",
+  "Helados":"assets/ic-ice.svg",
+  "Kioscos":"assets/ic-kiosk.svg",
+  "Farmacias":"assets/ic-pharmacy.svg",
+  "Mascotas":"assets/ic-pets.svg",
+  "Bebidas":"assets/ic-drinks.svg",
+  "Tiendas":"assets/ic-shop.svg"
 };
 
 // Init
@@ -145,3 +145,77 @@ function renderStores(list){
     wrap.appendChild(el);
   });
 }
+
+// ---- Shared cart utilities (home) ----
+function getCart(){ try{ return JSON.parse(localStorage.getItem("franapp_cart")||"{}"); }catch(e){ return {}; } }
+function setCart(obj){ localStorage.setItem("franapp_cart", JSON.stringify(obj)); }
+function cartCount(){ const c = getCart(); return Object.values(c).reduce((a,b)=> a + (b.qty||0), 0); }
+function formatMoney(n){ return "$"+(n).toLocaleString("es-AR"); }
+
+function updateCartBadge(){
+  const el = document.getElementById("cartCount");
+  if(el) el.textContent = cartCount();
+}
+
+function openDrawer(){ document.getElementById("drawerOverlay").classList.add("open"); document.getElementById("cartDrawer").classList.add("open"); renderDrawer(); }
+function closeDrawer(){ document.getElementById("drawerOverlay").classList.remove("open"); document.getElementById("cartDrawer").classList.remove("open"); }
+
+function renderDrawer(){
+  const listEl = document.getElementById("drawerList");
+  const totalsEl = { sub: $("#subTot"), ship: $("#ship"), grand: $("#grand") };
+  const cart = getCart();
+  const entries = Object.values(cart);
+  listEl.innerHTML = "";
+  let subtotal = 0;
+  entries.forEach(e=>{
+    const row = document.createElement("div");
+    row.className = "item-row";
+    row.innerHTML = `
+      <div>
+        <h5>${e.name}</h5>
+        <div class="muted">${e.category||""}</div>
+      </div>
+      <div class="qty">
+        <button data-id="${e.id}" data-act="minus">−</button>
+        <span>${e.qty}</span>
+        <button data-id="${e.id}" data-act="plus">+</button>
+      </div>
+      <div style="text-align:right;font-weight:700">${formatMoney(e.price*e.qty)}</div>
+    `;
+    listEl.appendChild(row);
+    subtotal += e.price*e.qty;
+  });
+  const shipping = entries.length ? 700 : 0;
+  totalsEl.sub.textContent = formatMoney(subtotal);
+  totalsEl.ship.textContent = formatMoney(shipping);
+  totalsEl.grand.textContent = formatMoney(subtotal + shipping);
+
+  listEl.onclick = (ev)=>{
+    const btn = ev.target.closest("button[data-id]");
+    if(!btn) return;
+    const id = btn.dataset.id, act = btn.dataset.act;
+    if(!cart[id]) return;
+    cart[id].qty = Math.max(0, cart[id].qty + (act==="plus"?1:-1));
+    if(cart[id].qty===0) delete cart[id];
+    setCart(cart);
+    renderDrawer();
+    updateCartBadge();
+  };
+}
+
+window.addEventListener("DOMContentLoaded", ()=>{
+  updateCartBadge();
+  const btnCart = document.getElementById("btnCart");
+  if(btnCart){
+    btnCart.addEventListener("click", openDrawer);
+    document.getElementById("drawerOverlay").addEventListener("click", closeDrawer);
+    document.getElementById("btnGoCheckout").addEventListener("click", ()=>{
+      const total = document.getElementById("grand").textContent;
+      alert("Compra de ejemplo confirmada por " + total);
+      closeDrawer();
+    });
+    document.getElementById("btnClearCart").addEventListener("click", ()=>{
+      if(confirm("¿Vaciar carrito?")){ setCart({}); renderDrawer(); updateCartBadge(); }
+    });
+  }
+});

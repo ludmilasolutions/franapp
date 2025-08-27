@@ -1,5 +1,7 @@
 :root{
-  --py-red:#EA044E;
+  --brand:#00B7FF;
+
+  --brand:#00B7FF;
   --ink:#100423;
   --ink-2:#4C4359;
   --muted:#70697A;
@@ -17,7 +19,7 @@
 html,body{height:100%}
 body{
   margin:0;
-  font-family: "TT Commons Pro", Lato, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-family: Lato, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   color:var(--ink);
   background:var(--bg);
 }
@@ -54,7 +56,7 @@ body{
 }
 .searchbar button{
   position:absolute; right:4px; height:32px; width:32px; border-radius:999px;
-  border:0; background:var(--py-red); display:grid; place-items:center; cursor:pointer;
+  border:0; background:var(--brand); display:grid; place-items:center; cursor:pointer;
 }
 .searchbar button svg path{stroke:#fff}
 
@@ -118,7 +120,7 @@ body{
 }
 .ribbon{
   position:absolute; top:12px; left:12px; padding:6px 10px; border-radius:999px;
-  background:var(--py-red); color:#fff; font-size:12px; font-weight:700;
+  background:var(--brand); color:#fff; font-size:12px; font-weight:700;
 }
 .card__body{padding:12px}
 .card__title{display:flex; align-items:center; justify-content:space-between; gap:8px}
@@ -163,4 +165,22 @@ body{
 .qty button{width:28px; height:28px; border-radius:8px; background:var(--bg-2); border:1px solid var(--line); cursor:pointer}
 .fab-cart{position:sticky; bottom:0; z-index:40; background:#fff; border-top:1px solid var(--line)}
 .fab-inner{max-width:1116px; margin:0 auto; padding:12px 16px; display:flex; gap:12px; justify-content:space-between; align-items:center}
-.fab-inner .btn{height:44px; border-radius:12px; background:var(--py-red); color:#fff; border:0; padding:0 16px; cursor:pointer; font-weight:700}
+.fab-inner .btn{height:44px; border-radius:12px; background:var(--brand); color:#fff; border:0; padding:0 16px; cursor:pointer; font-weight:700}
+
+/* Cart Drawer */
+.drawer-overlay{position:fixed; inset:0; background:rgba(16,4,35,.5); opacity:0; visibility:hidden; transition:.2s; z-index:90}
+.drawer-overlay.open{opacity:1; visibility:visible}
+.drawer{position:fixed; right:-380px; top:0; width:360px; height:100vh; background:#fff; border-left:1px solid var(--line); box-shadow:var(--shadow); z-index:91; transition:right .25s}
+.drawer.open{right:0}
+.drawer header{display:flex; align-items:center; justify-content:space-between; padding:16px; border-bottom:1px solid var(--line)}
+.drawer .body{padding:12px; display:flex; flex-direction:column; gap:12px; height:calc(100vh - 180px); overflow:auto}
+.drawer .item-row{display:grid; grid-template-columns:1fr 64px 64px; gap:8px; align-items:center; border:1px solid var(--line); border-radius:12px; padding:8px}
+.drawer .item-row h5{margin:0 0 4px 0; font-size:14px}
+.drawer .qty{display:flex; align-items:center; gap:8px; justify-content:flex-end}
+.drawer .qty button{width:28px; height:28px; border-radius:8px; border:1px solid var(--line); background:var(--bg-2); cursor:pointer}
+.drawer .totals{padding:12px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:8px}
+.drawer .totals .row{display:flex; justify-content:space-between}
+.drawer .checkout{padding:12px; border-top:1px solid var(--line);}
+.drawer .btn-primary{height:44px; width:100%; border-radius:12px; background:var(--brand); color:#fff; border:0; font-weight:700; cursor:pointer}
+.btn-link{background:none; border:0; color:var(--ink-2); text-decoration:underline; cursor:pointer}
+.badge-count{min-width:18px; height:18px; padding:0 6px; border-radius:999px; background:var(--brand); color:#fff; font-size:11px; display:inline-flex; align-items:center; justify-content:center}
