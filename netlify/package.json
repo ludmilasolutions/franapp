@@ -1,0 +1,7 @@
+{
+  "name": "franapp-functions",
+  "private": true,
+  "dependencies": {
+    "@octokit/rest": "^20.1.1"
+  }
+}

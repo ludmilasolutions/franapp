@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Panel admin · Franapp</title>
+  <link rel="stylesheet" href="assets/css/panels.css">
+</head>
+<body>
+<header>
+  <div class="row"><strong>Franapp</strong><span class="badge">Admin</span></div>
+  <nav class="row">
+    <a class="btn outline" href="/registro.html">+ Nuevo local</a>
+    <a class="btn outline" href="/">Home</a>
+  </nav>
+</header>
+<main>
+  <h1>Locales</h1>
+  <div class="card">
+    <div class="row" style="justify-content:space-between">
+      <input id="q" placeholder="Buscar por nombre o slug..." style="max-width:360px">
+      <button id="import" class="btn">Importar JSON</button>
+    </div>
+    <table class="table" id="tabla">
+      <thead><tr><th>Slug</th><th>Nombre</th><th>Categoría</th><th>Entrega</th><th>Pago</th><th></th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="small muted">Los archivos se leen desde <code>/locales/*.json</code>.</div>
+  </div>
+</main>
+<script src="assets/js/panel-admin.js"></script>
+</body>
+</html>

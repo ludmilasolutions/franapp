@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Franapp Local",
+  "type": "object",
+  "required": [
+    "slug",
+    "nombre",
+    "categoria",
+    "direccion",
+    "mapa",
+    "whatsapp",
+    "horarios",
+    "entrega",
+    "pago",
+    "imagenes",
+    "descripcion"
+  ],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]{3,}$"
+    },
+    "nombre": {
+      "type": "string",
+      "minLength": 2
+    },
+    "categoria": {
+      "type": "string"
+    },
+    "direccion": {
+      "type": "string"
+    },
+    "mapa": {
+      "type": "string"
+    },
+    "whatsapp": {
+      "type": "string",
+      "pattern": "^[0-9+() -]{6,}$"
+    },
+    "horarios": {
+      "type": "string"
+    },
+    "entrega": {
+      "type": "object",
+      "properties": {
+        "metodos": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "retiro",
+              "envio"
+            ]
+          }
+        },
+        "radio": {
+          "type": "number"
+        },
+        "zonas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "nombre": {
+                "type": "string"
+              },
+              "precio": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "nombre",
+              "precio"
+            ]
+          }
+        }
+      }
+    },
+    "pago": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "efectivo",
+          "mp",
+          "tarjeta"
+        ]
+      }
+    },
+    "imagenes": {
+      "type": "object",
+      "properties": {
+        "logo": {
+          "type": "string"
+        },
+        "banner": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "logo"
+      ]
+    },
+    "descripcion": {
+      "type": "string"
+    },
+    "social": {
+      "type": "object",
+      "properties": {
+        "instagram": {
+          "type": "string"
+        },
+        "facebook": {
+          "type": "string"
+        },
+        "web": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

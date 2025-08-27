@@ -1,0 +1,23 @@
+
+/* Minimal admin/local panel styles (blue theme) */
+:root{--brand:#00B7FF;--ink:#0b2a3a;--line:#e5e7eb;}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;margin:0;color:var(--ink);background:#fff;}
+header{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line);background:#fff}
+h1,h2{margin:8px 0}
+main{max-width:960px;margin:0 auto;padding:16px}
+.grid{display:grid;gap:12px}
+.grid.cols-2{grid-template-columns:1fr 1fr}
+.card{border:1px solid var(--line);border-radius:12px;padding:12px}
+label{font-size:14px;margin-bottom:6px;display:block}
+input,select,textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:14px}
+textarea{min-height:100px}
+.row{display:flex;gap:8px;align-items:center}
+.btn{background:var(--brand);color:#fff;border:none;border-radius:12px;padding:10px 14px;cursor:pointer;font-weight:700}
+.btn.outline{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.table{width:100%;border-collapse:separate;border-spacing:0 8px}
+.table th{text-align:left;font-size:12px;color:#5c6b76}
+.table td,.table th{padding:8px 10px;background:#fff}
+.badge{display:inline-block;background:var(--brand);color:#fff;border-radius:999px;padding:2px 8px;font-size:12px}
+.muted{color:#5c6b76}
+hr{border:0;border-top:1px solid var(--line);margin:16px 0}
+.small{font-size:12px}

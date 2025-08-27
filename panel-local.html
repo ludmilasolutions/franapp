@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Panel del local · Franapp</title>
+  <link rel="stylesheet" href="assets/css/panels.css">
+</head>
+<body>
+<header>
+  <div class="row"><strong>Franapp</strong><span class="badge">Panel local</span></div>
+  <a class="btn outline" href="/">← Home</a>
+</header>
+<main>
+  <h1>Mi local</h1>
+  <div class="card grid cols-2">
+    <div>
+      <label>Seleccionar archivo del local (.json)</label>
+      <input type="file" id="file" accept="application/json">
+      <div class="small muted">Cargá tu <code>/locales/mi-slug.json</code> para editarlo.</div>
+    </div>
+    <div class="row">
+      <button id="save" class="btn">Guardar cambios</button>
+      <a id="download" class="btn outline" download="local.json">Descargar JSON</a>
+    </div>
+  </div>
+
+  <div id="editor" class="grid">
+    <div class="card">
+      <h2>Datos básicos</h2>
+      <div class="grid cols-2">
+        <div><label>Nombre</label><input data-k="nombre"></div>
+        <div><label>Categoría</label><input data-k="categoria"></div>
+        <div><label>WhatsApp</label><input data-k="whatsapp"></div>
+        <div><label>Dirección</label><input data-k="direccion"></div>
+        <div><label>Mapa</label><input data-k="mapa"></div>
+        <div><label>Horarios</label><input data-k="horarios"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Envíos</h2>
+      <div class="row"><label><input type="checkbox" data-k="entrega.metodos" value="retiro"> Retiro</label><label><input type="checkbox" data-k="entrega.metodos" value="envio"> Envío</label></div>
+      <table class="table" id="zonas">
+        <thead><tr><th>Zona</th><th>Precio</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <button id="addZona" class="btn small">+ Zona</button>
+    </div>
+    <div class="card">
+      <h2>Pago</h2>
+      <div class="row"><label><input type="checkbox" data-k="pago" value="efectivo"> Efectivo</label><label><input type="checkbox" data-k="pago" value="mp"> MP</label><label><input type="checkbox" data-k="pago" value="tarjeta"> Tarjeta</label></div>
+    </div>
+    <div class="card">
+      <h2>Imágenes</h2>
+      <div class="grid cols-2"><div><label>Logo</label><input data-k="imagenes.logo"></div><div><label>Banner</label><input data-k="imagenes.banner"></div></div>
+    </div>
+    <div class="card">
+      <h2>Descripción</h2>
+      <textarea data-k="descripcion"></textarea>
+    </div>
+  </div>
+</main>
+<script src="assets/js/panel-local.js"></script>
+</body>
+</html>

@@ -1,183 +1,101 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Registrar local • franapp</title>
-  <link rel="icon" href="assets/favicon.svg" />
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    .form-shell{max-width:960px;margin:24px auto;padding:16px}
-    .card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:16px;margin-bottom:16px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-    label{font-weight:700;font-size:14px}
-    input,select,textarea{width:100%;height:40px;border:1px solid var(--line);border-radius:10px;padding:8px;background:#fff}
-    textarea{height:96px;resize:vertical}
-    .muted{color:var(--ink-2);font-size:12px}
-    .row{display:flex;gap:8px;align-items:center}
-    .btn{height:44px;border-radius:12px;border:0;background:var(--brand);color:#fff;padding:0 14px;font-weight:700;cursor:pointer}
-    .btn.outline{background:#fff;color:#0b2a3a;border:1px solid var(--line)}
-    .pill{display:inline-flex;gap:8px;align-items:center}
-    .chip{padding:4px 8px;border-radius:999px;border:1px solid var(--line)}
-    .error{color:#B00020;font-size:12px}
-    .ok{color:#1b8e2a;font-size:12px}
-    .hcap{margin-top:6px}
-    .zone-row{display:grid;grid-template-columns:2fr 1fr auto;gap:8px;align-items:center}
-    .zone-row input{height:38px}
-    .foot{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}
-  </style>
-  <script defer src="registro.js"></script>
-  <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Registrar local · Franapp</title>
+  <link rel="stylesheet" href="assets/css/panels.css">
 </head>
 <body>
-  <header class="py-header">
-    <div class="py-header__inner">
-      <div class="py-header__left">
-        <a href="index.html" class="brand"><img src="assets/favicon.svg" alt="franapp" style="width:28px;height:28px;border-radius:8px"> <strong>franapp</strong></a>
-      </div>
-      <div class="py-header__right"></div>
+<header>
+  <div class="row"><strong>Franapp</strong><span class="badge">Registro</span></div>
+  <a class="btn outline" href="/">← Volver</a>
+</header>
+<main>
+  <h1>Alta de local</h1>
+  <p class="muted">Completá el formulario. Al enviar, generamos una <strong>solicitud de alta</strong> para revisión (PR).</p>
+  <form id="altaForm" class="grid cols-2 card">
+    <div>
+      <label>Nombre comercial *</label>
+      <input name="nombre" required>
     </div>
-  </header>
-
-  <main class="form-shell">
-    <h1>Registrar tu local</h1>
-    <p class="muted">Completá el formulario. Queda en revisión y, si está ok, lo publicamos.</p>
-
-    <form id="regForm" class="card" novalidate>
-      <div class="grid">
-        <div>
-          <label>Nombre comercial*</label>
-          <input name="name" required placeholder="Ej: Lomo King"/>
-          <div class="error" data-err="name"></div>
-        </div>
-        <div>
-          <label>Categoría*</label>
-          <select name="category" required>
-            <option value="">Elegí…</option>
-            <option value="rotiseria">Rotisería</option>
-            <option value="libreria">Librería</option>
-            <option value="bares">Bares</option>
-            <option value="cafe">Café & Deli</option>
-            <option value="helados">Helados</option>
-            <option value="kiosco">Kiosco</option>
-            <option value="farmacia">Farmacia</option>
-            <option value="mascotas">Mascotas</option>
-            <option value="bebidas">Bebidas</option>
-            <option value="tienda">Tienda</option>
-          </select>
-          <div class="error" data-err="category"></div>
-        </div>
+    <div>
+      <label>Categoría *</label>
+      <input name="categoria" placeholder="rotisería, kiosco, librería..." required>
+    </div>
+    <div>
+      <label>Slug (url) *</label>
+      <input name="slug" placeholder="ej: rotiseria-la-9" required pattern="^[a-z0-9-]{3,}$">
+      <div class="small muted">Min 3 letras, minúsculas y guiones.</div>
+    </div>
+    <div>
+      <label>WhatsApp para pedidos *</label>
+      <input name="whatsapp" placeholder="+549..." required>
+    </div>
+    <div class="grid">
+      <div>
+        <label>Dirección *</label>
+        <input name="direccion" required>
       </div>
-
-      <div class="grid">
-        <div>
-          <label>Dirección*</label>
-          <input name="address" placeholder="Calle y número, ciudad" required />
-          <div class="error" data-err="address"></div>
-        </div>
-        <div>
-          <label>URL de mapa (Google Maps)*</label>
-          <input name="mapUrl" placeholder="https://maps.google.com/?q=lat,lng" required />
-          <div class="error" data-err="mapUrl"></div>
-        </div>
+      <div>
+        <label>URL de mapa *</label>
+        <input name="mapa" placeholder="https://maps.google.com/?q=..."
+               required>
       </div>
-
-      <div class="grid">
-        <div>
-          <label>WhatsApp*</label>
-          <input name="whatsapp" placeholder="+5493415551234" required />
-          <div class="error" data-err="whatsapp"></div>
-        </div>
-        <div>
-          <label>Bio / descripción*</label>
-          <input name="bio" maxlength="140" placeholder="Contá tu propuesta en 1–2 líneas" required />
-          <div class="error" data-err="bio"></div>
-        </div>
+    </div>
+    <div>
+      <label>Horarios *</label>
+      <textarea name="horarios" placeholder="Lun a sáb 11-15 y 20-23" required></textarea>
+    </div>
+    <div>
+      <label>Métodos de entrega *</label>
+      <div class="row">
+        <label><input type="checkbox" name="entrega.metodos" value="retiro" checked> Retiro</label>
+        <label><input type="checkbox" name="entrega.metodos" value="envio"> Envío</label>
       </div>
-
-      <div class="grid">
-        <div>
-          <label>Logo (URL)</label>
-          <input name="logo" placeholder="https://…" />
-          <div class="error" data-err="logo"></div>
-        </div>
-        <div>
-          <label>Banner/portada (URL) <span class="muted">(mín 800×450, &lt;400KB)</span></label>
-          <input name="banner" placeholder="https://…" />
-          <div class="error" data-err="banner"></div>
-        </div>
+    </div>
+    <div>
+      <label>Zonas de envío (nombre,precio ARS) — opcional</label>
+      <div id="zonas" class="grid"></div>
+      <button type="button" id="addZona" class="btn small">+ Agregar zona</button>
+    </div>
+    <div>
+      <label>Métodos de pago *</label>
+      <div class="row">
+        <label><input type="checkbox" name="pago" value="efectivo" checked> Efectivo</label>
+        <label><input type="checkbox" name="pago" value="mp"> MercadoPago</label>
+        <label><input type="checkbox" name="pago" value="tarjeta"> Tarjeta</label>
       </div>
-
-      <div class="grid-3">
-        <div>
-          <label>Métodos de entrega*</label>
-          <div class="row">
-            <label class="pill"><input type="checkbox" name="deliveries" value="retiro"/> Retiro</label>
-            <label class="pill"><input type="checkbox" name="deliveries" value="envio"/> Envío</label>
-          </div>
-          <div class="error" data-err="deliveries"></div>
-        </div>
-        <div>
-          <label>Métodos de pago*</label>
-          <div class="row">
-            <label class="pill"><input type="checkbox" name="payments" value="efectivo"/> Efectivo</label>
-            <label class="pill"><input type="checkbox" name="payments" value="mp"/> Mercado Pago</label>
-            <label class="pill"><input type="checkbox" name="payments" value="tarjeta"/> Tarjeta</label>
-          </div>
-          <div class="error" data-err="payments"></div>
-        </div>
-        <div>
-          <label>Peso/orden (0–100)</label>
-          <input type="number" name="weight" min="0" max="100" value="50"/>
-        </div>
+    </div>
+    <div>
+      <label>Logo (URL) *</label>
+      <input name="imagenes.logo" required>
+    </div>
+    <div>
+      <label>Banner (URL) — opcional</label>
+      <input name="imagenes.banner">
+    </div>
+    <div class="cols-2" style="grid-column: 1/-1;">
+      <label>Descripción *</label>
+      <textarea name="descripcion" required></textarea>
+    </div>
+    <div class="cols-2" style="grid-column: 1/-1;">
+      <label>Redes (URLs) — opcional</label>
+      <div class="grid cols-2">
+        <input name="social.instagram" placeholder="Instagram">
+        <input name="social.facebook" placeholder="Facebook">
+        <input name="social.web" placeholder="Sitio web">
       </div>
-
-      <div class="card">
-        <h3>Horarios*</h3>
-        <div class="grid">
-          <div><label>Días</label><input name="days" placeholder="lun-vie / sab-dom" required/></div>
-          <div><label>Apertura</label><input name="open" placeholder="11:30" required/></div>
-          <div><label>Cierre</label><input name="close" placeholder="23:30" required/></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Zonas y costo de envío*</h3>
-        <div id="zones"></div>
-        <button type="button" id="addZone" class="btn outline" style="margin-top:8px">+ Agregar zona</button>
-        <div class="error" data-err="zones"></div>
-      </div>
-
-      <div class="grid">
-        <div>
-          <label>Instagram</label>
-          <input name="ig" placeholder="https://instagram.com/…" />
-        </div>
-        <div>
-          <label>Sitio web</label>
-          <input name="web" placeholder="https://…" />
-        </div>
-      </div>
-
-      <div class="hcap">
-        <div class="h-captcha" data-sitekey="HCAPTCHA_SITEKEY_AQUI"></div>
-        <div class="error" data-err="captcha"></div>
-      </div>
-
-      <div class="foot">
-        <a class="btn outline" href="index.html">Cancelar</a>
-        <button class="btn" type="submit">Enviar alta</button>
-      </div>
-
-      <p id="result" class="muted"></p>
-    </form>
-
-    <section class="card">
-      <h3>Términos y condiciones</h3>
-      <p class="muted">Al enviar aceptás los <a href="terminos.html" target="_blank">Términos de Franapp</a>.</p>
-    </section>
-  </main>
+    </div>
+    <div style="grid-column:1/-1;display:flex;gap:8px">
+      <button class="btn" type="submit">Enviar solicitud</button>
+      <button class="btn outline" type="reset">Limpiar</button>
+      <span id="msg" class="muted"></span>
+    </div>
+  </form>
+  <hr>
+  <p class="small muted">Al enviar, validamos formato y mandamos a revisión. Si todo está OK, se crea un PR con <code>/locales/{slug}.json</code>.</p>
+</main>
+<script src="assets/js/registro.js"></script>
 </body>
 </html>
