@@ -1,0 +1,172 @@
+{
+  "tachi": {
+    "categories": [
+      "Pizzas",
+      "Empanadas",
+      "Bebidas"
+    ],
+    "items": [
+      {
+        "id": "pz-muzza",
+        "name": "Pizza Muzza",
+        "desc": "8 porciones, salsa de tomate, muzza y orégano",
+        "price": 5500,
+        "category": "Pizzas",
+        "photo": "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        "id": "pz-napo",
+        "name": "Pizza Napolitana",
+        "desc": "Tomate, muzza, rodajas de tomate y ajo",
+        "price": 6200,
+        "category": "Pizzas",
+        "photo": "https://images.unsplash.com/photo-1541745537413-b804d94f1d4a?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        "id": "emp-carne",
+        "name": "Empanada de Carne",
+        "desc": "Carne cortada a cuchillo",
+        "price": 900,
+        "category": "Empanadas",
+        "photo": "https://images.unsplash.com/photo-1642085521909-1e252d696a6a?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        "id": "emp-jyq",
+        "name": "Empanada JyQ",
+        "desc": "Jamón y queso",
+        "price": 850,
+        "category": "Empanadas",
+        "photo": "https://images.unsplash.com/photo-1654968261390-41b01a81e2b1?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        "id": "bb-coca",
+        "name": "Coca-Cola 1.5L",
+        "desc": "Gaseosa",
+        "price": 2500,
+        "category": "Bebidas",
+        "photo": "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        "id": "bb-agua",
+        "name": "Agua 1.5L",
+        "desc": "Sin gas",
+        "price": 1600,
+        "category": "Bebidas",
+        "photo": "https://images.unsplash.com/photo-1532635241-17e820acc59f?q=80&w=800&auto=format&fit=crop"
+      }
+    ]
+  },
+  "mgv": {
+    "categories": [
+      "Snacks",
+      "Bebidas"
+    ],
+    "items": [
+      {
+        "id": "sn-choco",
+        "name": "Chocolate 90g",
+        "desc": "Varios sabores",
+        "price": 1200,
+        "category": "Snacks",
+        "photo": "https://images.unsplash.com/photo-1599599810769-1d2f3a9a3b26?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        "id": "sn-papas",
+        "name": "Papas onduladas",
+        "desc": "Bolsa 140g",
+        "price": 1500,
+        "category": "Snacks",
+        "photo": "https://images.unsplash.com/photo-1585238342028-4bbc6df38a5b?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        "id": "bb-lata",
+        "name": "Gaseosa lata",
+        "desc": "350ml",
+        "price": 900,
+        "category": "Bebidas",
+        "photo": "https://images.unsplash.com/photo-1600275669283-5b1680a50058?q=80&w=800&auto=format&fit=crop"
+      }
+    ]
+  },
+  "marketx": {
+    "categories": [
+      "Verdulería",
+      "Almacén"
+    ],
+    "items": [
+      {
+        "id": "vd-tomate",
+        "name": "Tomate perita 1kg",
+        "desc": "",
+        "price": 1800,
+        "category": "Verdulería",
+        "photo": "https://images.unsplash.com/photo-1546470427-9e3e9708fead?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        "id": "al-arroz",
+        "name": "Arroz largo fino 1kg",
+        "desc": "",
+        "price": 2200,
+        "category": "Almacén",
+        "photo": "https://images.unsplash.com/photo-1604908553833-3e282e1a463d?q=80&w=800&auto=format&fit=crop"
+      }
+    ]
+  },
+  "cafedel": {
+    "categories": [
+      "Cafetería",
+      "Panadería"
+    ],
+    "items": [
+      {
+        "id": "cf-latte",
+        "name": "Latte",
+        "desc": "Vaso 350ml",
+        "price": 1800,
+        "category": "Cafetería",
+        "photo": "https://images.unsplash.com/photo-1517705008128-361805f42e86?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        "id": "pn-medialuna",
+        "name": "Medialuna",
+        "desc": "Manteca",
+        "price": 600,
+        "category": "Panadería",
+        "photo": "https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?q=80&w=800&auto=format&fit=crop"
+      }
+    ]
+  },
+  "heladix": {
+    "categories": [
+      "1/4 Kg",
+      "1/2 Kg",
+      "1 Kg"
+    ],
+    "items": [
+      {
+        "id": "ic-cuarto",
+        "name": "1/4 Kg a elección",
+        "desc": "Hasta 2 gustos",
+        "price": 3800,
+        "category": "1/4 Kg",
+        "photo": "https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        "id": "ic-medio",
+        "name": "1/2 Kg a elección",
+        "desc": "Hasta 3 gustos",
+        "price": 6800,
+        "category": "1/2 Kg",
+        "photo": "https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=800&auto=format&fit=crop"
+      },
+      {
+        "id": "ic-kilo",
+        "name": "1 Kg a elección",
+        "desc": "Hasta 4 gustos",
+        "price": 12000,
+        "category": "1 Kg",
+        "photo": "https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=800&auto=format&fit=crop"
+      }
+    ]
+  }
+}

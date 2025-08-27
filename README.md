@@ -1,7 +1,20 @@
-# MGV Patch v2 (20250821)
+# franapp (starter tipo PedidosYa)
 
-Incluye:
-- `app.js`: Carrito mejorado con **Resumen con miniaturas**, selector Retiro/Envío, precio de envío desde **panel** y **handler de checkout por WhatsApp**.
-- `styles.css`: Estilos del carrito; oculta cualquier input viejo de envío.
-- `panel.html` / `panel.js`: Panel para editar precio de envío y descargar `data/config.json`.
-- `data/config.json`: Plantilla mínima.
+Estructura:
+- `index.html` + `styles.css` + `app.js`: Home con header sticky, búsqueda, carrusel de categorías, tarjetas de locales y skeleton shimmer.
+- `index.json`: Datos mock de categorías y 5 locales.
+- `local.html` + `local.js`: Pantalla del local con hero, tabs por categoría, lista de productos, carrito básico y barra de checkout.
+- `menus.json`: Productos de ejemplo por local.
+- `assets/logo-franapp.svg`: Logo simple.
+
+## Uso
+Abrí `index.html` en un navegador (doble click). No requiere server, pero si activás CORS estrictos, podés correr un server local:
+
+Python 3:
+```
+cd franapp
+python3 -m http.server 8000
+```
+Luego visitá http://localhost:8000
+
+¡A justar estilos y datos a gusto!

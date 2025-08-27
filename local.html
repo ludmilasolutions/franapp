@@ -1,114 +1,72 @@
 <!DOCTYPE html>
 <html lang="es-AR">
 <head>
-  <meta charset="utf-8"/>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>FranApp · Local</title>
-  <link rel="icon" href="/assets/logo.png"/>
-  <style>
-    :root{
-      --bg:#0b1220; --card:#0f172a; --text:#e6edf3; --muted:#94a3b8; --border:#1e293b;
-      --brand:#38bdf8; --accent:#fbbf24; --ok:#22c55e; --warn:#f97316;
-    }
-    @media(prefers-color-scheme:light){
-      :root{
-        --bg:#f8fafc; --card:#ffffff; --text:#0b1220; --muted:#6b7280; --border:#e5e7eb;
-        --brand:#0ea5e9; --accent:#f59e0b; --ok:#16a34a; --warn:#f97316;
-      }
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Inter,sans-serif;background:var(--bg);color:var(--text)}
-    a{color:inherit;text-decoration:none}
-    header{padding:12px 16px;border-bottom:1px solid var(--border);background:var(--card);position:sticky;top:0;z-index:10}
-    .wrap{max-width:900px;margin:0 auto;padding:16px}
-    .banner{width:100%;height:220px;background:#0b1220;border-radius:14px;overflow:hidden}
-    .banner img{width:100%;height:100%;object-fit:cover}
-    .head{display:flex;gap:14px;margin-top:-48px;align-items:flex-end}
-    .logo{width:96px;height:96px;border-radius:20px;overflow:hidden;border:4px solid var(--card);background:#0b1220}
-    .logo img{width:100%;height:100%;object-fit:cover}
-    .info h1{margin:0;font-size:1.6rem}
-    .info .cat{color:var(--muted);margin-top:4px}
-    .pill{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;padding:6px 10px;border-radius:999px;border:1px solid var(--border);margin-top:6px}
-    .pill.ok{background:color-mix(in oklab,var(--ok) 16%,transparent);border-color:var(--ok)}
-    .pill.warn{background:color-mix(in oklab,var(--warn) 16%,transparent);border-color:var(--warn)}
-    .btn{display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:#0b1220;
-      border:0;border-radius:12px;padding:10px 16px;font-weight:800;cursor:pointer;margin-top:10px;text-decoration:none}
-    section{margin-top:28px}
-    h2{margin:0 0 10px;font-size:1.2rem}
-    ul{padding-left:18px;margin:0}
-    li{margin:4px 0}
-    .muted{color:var(--muted)}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:16px}
-  </style>
+  <title>franapp · Local</title>
+  <link rel="icon" href="https://live.pystatic.com/webassets/pwa/pedidosya.ico"/>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-<header><a href="/index.html">← Volver</a></header>
-<main class="wrap" id="content">Cargando…</main>
+  <header class="py-header">
+    <div class="py-header__left">
+      <button class="brand" aria-label="Inicio" onclick="location.href='index.html'">
+        <img src="assets/logo-franapp.svg" alt="franapp" width="120" height="32"/>
+      </button>
+      <button id="btnBack" class="location-chip" onclick="history.back()">
+        <span class="cap">Volver</span>
+        <span>Listado</span>
+        <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M9 1 5 5 1 1" stroke="#100522" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="py-header__center">
+      <div class="searchbar">
+        <input id="searchItem" type="search" placeholder="Buscar en el menú"/>
+        <button id="btnFind" title="Buscar" aria-label="Buscar">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="py-header__right"></div>
+  </header>
 
-<script>
-const params = new URLSearchParams(location.search);
-const slug = params.get("slug");
-if(!slug){ document.getElementById("content").textContent="Local no especificado"; }
+  <main class="container">
+    <div class="spacer-48"></div>
 
-init();
-async function init(){
-  try{
-    const data = await fetch(`/data/locales/${slug}.json`).then(r=>r.json());
-    render(data);
-  }catch(e){
-    document.getElementById("content").textContent="No se encontró este local.";
-  }
-}
+    <section id="storeHero" class="card">
+      <div class="card__top">
+        <img id="storeBanner" src="" alt="">
+        <span id="ribbon" class="ribbon" style="display:none"></span>
+        <span id="badge" class="badge"></span>
+      </div>
+      <div class="card__body">
+        <div class="card__title">
+          <h4 id="storeName">Local</h4>
+          <div class="rating">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21 12 17.27Z" fill="#00B67A"/></svg>
+            <span id="storeRating">-</span>
+          </div>
+        </div>
+        <div class="meta" id="storeMeta"></div>
+      </div>
+    </section>
 
-function render(x){
-  const c=document.getElementById("content");c.innerHTML="";
-  // Banner
-  const bn=document.createElement("div");bn.className="banner";
-  if(x.imagenes?.banner){bn.innerHTML=`<img src="${x.imagenes.banner}" alt="Banner ${x.nombre}">`;}
-  c.appendChild(bn);
-  // Head
-  const head=document.createElement("div");head.className="head";
-  head.innerHTML=`<div class="logo">${x.imagenes?.logo?`<img src="${x.imagenes.logo}" alt="Logo ${x.nombre}">`:''}</div>
-  <div class="info">
-    <h1>${x.nombre}</h1>
-    <div class="cat">${x.categoria||''}</div>
-    <div class="pill ${x.estado==='abierto'?'ok':'warn'}">${x.estado}</div>
-    <a class="btn" href="${waLink(x)}" target="_blank">WhatsApp</a>
-  </div>`;
-  c.appendChild(head);
-  // Descripción
-  if(x.descripcion){ const p=document.createElement("p");p.textContent=x.descripcion;c.appendChild(p); }
-  // Datos
-  const datos=document.createElement("section");
-  datos.innerHTML=`
-    <div class="card"><h2>Dirección</h2><p>${x.direccion?.texto||''} ${x.direccion?.map_url?`<br><a class="link" href="${x.direccion.map_url}" target="_blank">Ver mapa</a>`:''}</p></div>
-    <div class="card"><h2>Horarios</h2><p>${x.horarios||'—'}</p></div>
-  `;
-  c.appendChild(datos);
-  // Entrega
-  if(x.entrega){
-    const ent=document.createElement("div");ent.className="card";
-    ent.innerHTML="<h2>Métodos de entrega</h2>";
-    const ul=document.createElement("ul");
-    if(x.entrega.metodos) x.entrega.metodos.forEach(m=>{const li=document.createElement("li");li.textContent=(m==="envio"?"Envío":"Retiro");ul.appendChild(li);});
-    if(x.entrega.zonas) x.entrega.zonas.forEach(z=>{const li=document.createElement("li");li.textContent=`${z.zona}: $${z.costo}`;ul.appendChild(li);});
-    ent.appendChild(ul); c.appendChild(ent);
-  }
-  // Pago
-  if(x.pago){
-    const pag=document.createElement("div");pag.className="card";
-    pag.innerHTML="<h2>Métodos de pago</h2><p>"+x.pago.map(mapPago).join(", ")+"</p>";
-    c.appendChild(pag);
-  }
-}
+    <div class="spacer-48"></div>
 
-function waLink(x){
-  const num=(x.contacto?.whatsapp||'').replace(/[^\\d]/g,'');
-  return num?`https://wa.me/${num}?text=${encodeURIComponent('Hola '+x.nombre+', vengo de FranApp.')}`:'#';
-}
-function mapPago(k){
-  return ({efectivo:"Efectivo",transferencia:"Transferencia",mercadopago:"Mercado Pago",debito:"Débito",credito:"Crédito"})[k]||k;
-}
-</script>
+    <div class="tabs" id="tabs"></div>
+
+    <section class="menu-list" id="menuList"></section>
+
+    <div class="spacer-48"></div>
+  </main>
+
+  <div class="fab-cart">
+    <div class="fab-inner">
+      <div id="cartInfo" class="muted">Carrito vacío</div>
+      <button id="btnCheckout" class="btn" disabled>Ir al pago</button>
+    </div>
+  </div>
+
+  <script src="local.js" defer></script>
 </body>
 </html>

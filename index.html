@@ -1,139 +1,121 @@
 <!DOCTYPE html>
-<html lang="es-AR" class="no-js">
+<html lang="es-AR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FranApp · Descubrí locales y pedí</title>
-  <meta name="description" content="FranApp – Buscá por categoría, filtrá por entrega y pago. Hacé tu pedido en un toque."/>
-  <link rel="icon" href="/assets/logo.png" />
-  <style>
-    :root{
-      --bg:#0b1220; --bg-2:#0f172a; --card:#0f172a; --text:#e6edf3; --muted:#94a3b8; --border:#1e293b;
-      --brand:#38bdf8; --accent:#fbbf24; --ok:#22c55e; --warn:#f97316;
-      --ring: color-mix(in oklab, var(--brand) 35%, transparent);
-      --glass: rgba(255,255,255,.06);
-    }
-    @media(prefers-color-scheme:light){
-      :root{
-        --bg:#f8fafc; --bg-2:#eef2f7; --card:#ffffff; --text:#0b1220; --muted:#6b7280; --border:#e5e7eb;
-        --brand:#0ea5e9; --accent:#f59e0b; --ok:#16a34a; --warn:#f97316;
-        --glass: rgba(255,255,255,.6);
-      }
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Inter,sans-serif;
-      background:linear-gradient(180deg,var(--bg),var(--bg-2));color:var(--text)}
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:1200px;margin:0 auto;padding:16px}
-    header{position:sticky;top:0;background:var(--card);backdrop-filter:saturate(120%) blur(6px);
-      border-bottom:1px solid var(--border);z-index:20}
-    .hbar{display:flex;align-items:center;gap:12px;padding:12px 16px}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
-    .brand .dot{width:10px;height:10px;background:var(--accent);border-radius:50%}
-    .sp{flex:1}
-    .btn{display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:#0b1220;
-      border:0;border-radius:12px;padding:10px 14px;font-weight:800;cursor:pointer}
-    .btn.ghost{background:transparent;color:var(--brand);border:1px solid var(--brand)}
-    /* Hero */
-    .hero{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;align-items:center;padding:20px 16px}
-    .hero h1{font-size:clamp(24px,3.6vw,44px);margin:0 0 6px}
-    .hero p{color:var(--muted);margin:.2rem 0 1.1rem}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:14px}
-    /* Toolbar */
-    .toolbar{display:grid;grid-template-columns:1fr .6fr .6fr .6fr;gap:10px;margin:12px 0}
-    .input{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);
-      border-radius:12px;padding:10px 12px}
-    .input input,.input select{border:0;outline:0;background:transparent;width:100%;color:var(--text)}
-    .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);padding:8px 12px;
-      border-radius:999px;background:var(--card);cursor:pointer}
-    .chip[data-active="1"]{border-color:var(--brand);background:color-mix(in oklab,var(--brand) 18%,transparent)}
-    .muted{color:var(--muted)}
-    /* Grid */
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin:20px 0}
-    .local{border:1px solid var(--border);border-radius:18px;background:var(--card);
-      transition:transform .12s ease, box-shadow .12s ease}
-    .local:hover{transform:translateY(-2px);box-shadow:0 16px 30px rgba(0,0,0,.25)}
-    .banner{height:160px;background:#0b1220}
-    .banner img{width:100%;height:100%;object-fit:cover}
-    .pad{padding:12px}
-    .row{display:flex;align-items:center;gap:12px}
-    .logo{width:58px;height:58px;border-radius:16px;overflow:hidden;background:#0b1220}
-    .logo img{width:100%;height:100%;object-fit:cover}
-    .name{font-weight:900}
-    .cat{font-size:.9rem;color:var(--muted)}
-    .pill{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;padding:6px 10px;
-      border-radius:999px;border:1px solid var(--border)}
-    .pill.ok{background:color-mix(in oklab,var(--ok) 16%,transparent);border-color:var(--ok)}
-    .pill.warn{background:color-mix(in oklab,var(--warn) 16%,transparent);border-color:var(--warn)}
-    .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .footer{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
-    .link{font-weight:800;color:var(--brand)}
-    .empty{padding:28px;text-align:center;border:1px dashed var(--border);border-radius:14px;color:var(--muted)}
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>franapp</title>
+  <link rel="icon" href="https://live.pystatic.com/webassets/pwa/pedidosya.ico"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=TT+Commons+Pro:wght@500;600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-<header>
-  <div class="hbar wrap">
-    <div class="brand"><span class="dot"></span><span>FranApp</span></div>
-    <div class="sp"></div>
-    <a class="btn ghost" href="/registro.html">Registrar local</a>
-  </div>
-</header>
+  <!-- Header -->
+  <header class="py-header">
+    <div class="py-header__left">
+      <button class="brand" aria-label="Inicio" onclick="location.href='index.html'">
+        <img src="assets/logo-franapp.svg" alt="franapp" width="120" height="32"/>
+      </button>
 
-<main class="wrap">
-  <section class="hero">
-    <div>
-      <h1>Encontrá tu local favorito y pedí en segundos</h1>
-      <p>Filtrá por categoría, entrega y pago. Los destacados van primero y luego por curación.</p>
-      <div class="toolbar">
-        <label class="input"><input id="q" placeholder="Buscar..."/></label>
-        <label class="input"><select id="cat"><option value="">Todas</option></select></label>
-        <label class="input"><select id="sort">
-          <option value="destacado">Destacados</option>
-          <option value="orden">Curación</option>
-          <option value="alf">Alfabético</option>
-        </select></label>
-        <button id="f-open" class="chip" data-active="0">Abiertos</button>
+      <button id="btnLocation" class="location-chip" aria-label="Cambiar dirección">
+        <span class="cap">Enviar a</span>
+        <span id="locationText">San Luis 4526</span>
+        <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M9 1 5 5 1 1" stroke="#100522" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <div class="py-header__center">
+      <div class="searchbar">
+        <input id="searchInput" type="search" placeholder="Buscar locales"/>
+        <button id="searchBtn" title="Buscar" aria-label="Buscar">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
       </div>
     </div>
-    <div class="card">
-      <h3>¿Tenés un local?</h3>
-      <p class="muted">Registralo gratis. Revisamos los datos y lo publicamos.</p>
-      <a class="btn" href="/registro.html">Registrar mi local</a>
+
+    <div class="py-header__right">
+      <button class="profile" aria-haspopup="true" aria-expanded="false">
+        <div class="avatar"></div>
+        <span>Mi Perfil</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="#100423" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
     </div>
-  </section>
+  </header>
 
-  <section id="list" class="grid"></section>
-  <div id="empty" class="empty" style="display:none">No encontramos locales con esos filtros.</div>
-</main>
+  <main class="container">
+    <div class="spacer-48"></div>
 
-<script>
-const STATE = { locales: [], filters:{q:"",cat:"",abiertos:false,sort:"destacado"} };
+    <!-- Título shortcuts -->
+    <div class="row-title">
+      <h3>Hola. ¿Qué vas a pedir hoy?</h3>
+      <div class="arrows">
+        <button class="arrow" id="catPrev" aria-label="Anterior">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" fill="none" stroke="#4C4359" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <button class="arrow" id="catNext" aria-label="Siguiente">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="#4C4359" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
 
-async function init(){
-  const idx = await fetch("/data/locales/index.json").then(r=>r.json()).catch(()=>[]);
-  if(!idx.length){document.getElementById("empty").style.display="block";return;}
-  for(const slug of idx){
-    const item = await fetch(`/data/locales/${slug}.json`).then(r=>r.json()).catch(()=>null);
-    if(item) STATE.locales.push(item);
-  }
-  renderList(STATE.locales);
-}
-init();
+    <!-- Carrusel de categorías -->
+    <section class="quilted" id="quilted">
+      <!-- se llena por JS con index.json -->
+    </section>
 
-function renderList(arr){
-  const list=document.getElementById("list");list.innerHTML="";
-  for(const x of arr){
-    const el=document.createElement("article");el.className="local";
-    el.innerHTML=`<a class="banner"><img src="${x.imagenes?.banner||''}"></a>
-    <div class="pad"><div class="row">
-    <div class="logo">${x.imagenes?.logo?`<img src="${x.imagenes.logo}">`:''}</div>
-    <div><div class="name">${x.nombre}</div><div class="cat">${x.categoria||''}</div></div>
-    <span class="pill ${x.estado==='abierto'?'ok':'warn'}">${x.estado}</span>
-    </div></div>`;
-    list.appendChild(el);
-  }
-}
-</script>
+    <div class="spacer-48"></div>
+
+    <!-- Título locales -->
+    <div class="row-title">
+      <h3>Locales cercanos</h3>
+      <small id="countTxt" class="muted"></small>
+    </div>
+
+    <!-- Lista de locales / skeleton -->
+    <section id="stores" class="stores">
+      <!-- skeleton inicial -->
+      <div class="card sk">
+        <div class="sk-img"></div>
+        <div class="sk-lines">
+          <div class="sk-line w60"></div>
+          <div class="sk-line w40"></div>
+          <div class="sk-line w30"></div>
+        </div>
+      </div>
+      <div class="card sk">
+        <div class="sk-img"></div>
+        <div class="sk-lines">
+          <div class="sk-line w60"></div>
+          <div class="sk-line w40"></div>
+          <div class="sk-line w30"></div>
+        </div>
+      </div>
+      <div class="card sk">
+        <div class="sk-img"></div>
+        <div class="sk-lines">
+          <div class="sk-line w60"></div>
+          <div class="sk-line w40"></div>
+          <div class="sk-line w30"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="spacer-48"></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="muted">© <span id="year"></span> franapp — inspirada en la experiencia de PedidosYa.</p>
+      <nav class="footer-links">
+        <a href="#" aria-label="Términos y condiciones">Términos</a>
+        <span>·</span>
+        <a href="#" aria-label="Privacidad">Privacidad</a>
+        <span>·</span>
+        <a href="#" aria-label="Ayuda en línea">Ayuda</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
 </body>
 </html>

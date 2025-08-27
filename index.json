@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "app": "franapp",
+    "updated": "2025-08-27"
+  },
+  "categories": [
+    "Restaurantes",
+    "PedidosYa Market",
+    "Mercados",
+    "Café & Deli",
+    "Helados",
+    "Kioscos",
+    "Farmacias",
+    "Mascotas",
+    "Bebidas",
+    "Tiendas"
+  ],
+  "stores": [
+    {
+      "id": "mgv",
+      "name": "MGV Kiosco",
+      "category": "Kioscos",
+      "rating": 4.8,
+      "time": "20–30 min",
+      "fee": "Envío gratis",
+      "distance": "1.2 km",
+      "promo": "2x1 en golosinas",
+      "tags": [
+        "Abre 24 hs",
+        "Retiro"
+      ],
+      "banner": "https://images.unsplash.com/photo-1600359756091-eff1f37fbcf3?q=80&w=1200&auto=format&fit=crop",
+      "logo": "",
+      "address": "San Luis 4526",
+      "status": "open"
+    },
+    {
+      "id": "tachi",
+      "name": "Rotisería El Tachi",
+      "category": "Restaurantes",
+      "rating": 4.9,
+      "time": "25–35 min",
+      "fee": "$500",
+      "distance": "1.8 km",
+      "promo": "Combo Familiar -15%",
+      "tags": [
+        "Promo",
+        "Popular"
+      ],
+      "banner": "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop",
+      "logo": "",
+      "address": "San Luis 4526",
+      "status": "open"
+    },
+    {
+      "id": "marketx",
+      "name": "Market Express",
+      "category": "Mercados",
+      "rating": 4.5,
+      "time": "15–25 min",
+      "fee": "$300",
+      "distance": "900 m",
+      "promo": null,
+      "tags": [
+        "Descuento banco"
+      ],
+      "banner": "https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=1200&auto=format&fit=crop",
+      "logo": "",
+      "address": "Bv. Oroño 1200",
+      "status": "open"
+    },
+    {
+      "id": "cafedel",
+      "name": "Café & Deli Norte",
+      "category": "Café & Deli",
+      "rating": 4.6,
+      "time": "20–30 min",
+      "fee": "$400",
+      "distance": "2.1 km",
+      "promo": "Latte + medialuna $2500",
+      "tags": [
+        "Desayuno",
+        "Brunch"
+      ],
+      "banner": "https://images.unsplash.com/photo-1517705008128-361805f42e86?q=80&w=1200&auto=format&fit=crop",
+      "logo": "",
+      "address": "Av. Alberdi 800",
+      "status": "open"
+    },
+    {
+      "id": "heladix",
+      "name": "Heladix Palermo",
+      "category": "Helados",
+      "rating": 4.7,
+      "time": "15–25 min",
+      "fee": "Envío gratis",
+      "distance": "3.4 km",
+      "promo": "1/4 + 1/4 al 50%",
+      "tags": [
+        "Sin TACC"
+      ],
+      "banner": "https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=1200&auto=format&fit=crop",
+      "logo": "",
+      "address": "Mendoza 2400",
+      "status": "open"
+    }
+  ]
+}
