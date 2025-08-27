@@ -1,0 +1,72 @@
+{
+  "slug": "lomo-king-remedios",
+  "name": "Lomo King",
+  "category": "rotiseria",
+  "bio": "Lomos, hamburguesas y papas. Porciones generosas y pan casero.",
+  "images": {
+    "logo": "https://example.com/logo-lomoking.png",
+    "banner": "https://example.com/banner-lomoking.jpg"
+  },
+  "address": {
+    "line": "San Luis 4526, Remedios de Escalada de San Martín",
+    "mapUrl": "https://maps.google.com/?q=-32.94055,-60.68547",
+    "geo": {
+      "lat": -32.94055,
+      "lng": -60.68547
+    }
+  },
+  "whatsapp": "+5493415551234",
+  "hours": [
+    {
+      "day": "lun-vie",
+      "open": "11:30",
+      "close": "15:00"
+    },
+    {
+      "day": "lun-jue",
+      "open": "19:30",
+      "close": "23:30"
+    },
+    {
+      "day": "vie-sab",
+      "open": "19:30",
+      "close": "00:30"
+    }
+  ],
+  "delivery": {
+    "model": "zones",
+    "zones": [
+      {
+        "name": "Centro",
+        "price": 900
+      },
+      {
+        "name": "Echesortu",
+        "price": 1100
+      },
+      {
+        "name": "Fisherton",
+        "price": 1400
+      }
+    ]
+  },
+  "methods": {
+    "delivery": [
+      "retiro",
+      "envio"
+    ],
+    "payment": [
+      "efectivo",
+      "mp",
+      "tarjeta"
+    ]
+  },
+  "social": {
+    "instagram": "https://instagram.com/lomoking",
+    "facebook": "",
+    "web": ""
+  },
+  "weight": 60,
+  "status": "approved",
+  "createdAt": "2025-08-27T20:44:32.275838Z"
+}
