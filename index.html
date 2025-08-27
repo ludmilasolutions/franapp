@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MGV Librería–Regalería</title>
+  <meta name="description" content="Artículos de librería y regalería. Comprá por WhatsApp; coordinamos la entrega."/>
+  <link rel="icon" href="assets/logo.png"/>
+  <link id="mainCss" rel="stylesheet" href="styles.css"/>
+
+  <!-- ====== 1) Sync de SHA entre dispositivos (GitHub API) ====== -->
+  <script>
+  (function(){
+    const ORG="ludmilasolutions", REPO="mgv", BR="main";
+    async function syncLatestSHA(){
+      try{
+        const r=await fetch(`https://api.github.com/repos/${ORG}/${REPO}/commits/${BR}`, {cache:'no-store'});
+        if(!r.ok) return;
+        const j=await r.json(); const sha=j && j.sha;
+        if(!sha) return;
+        try{
+          localStorage.setItem('mgv_last_sha', sha);
+          document.cookie='mgvsha='+sha+';path=/;max-age='+(60*60*24*30);
+        }catch(_){}
+        document.dispatchEvent(new CustomEvent('mgvsha:update',{detail:{sha}}));
+      }catch(_){}
+    }
+    // corre apenas abre
+    syncLatestSHA();
+  })();
+  </script>
+
+  <!-- ====== 2) Cache-buster universal de imágenes ====== -->
+  <script>
+  (function(){
+    const ORG="ludmilasolutions", REPO="mgv";
+    function getCookie(n){ const m=document.cookie.match(new RegExp('(?:^|;\\s*)'+n+'=([^;]+)')); return m?m[1]:null; }
+    function isSha(x){ return /^[a-f0-9]{40}$/i.test(x||""); }
+
+    let COMMIT_SHA = getCookie('mgvsha') || localStorage.getItem('mgv_last_sha') || "";
+    let TAG = COMMIT_SHA || String(Date.now());
+
+    function rewriteRawToSha(u){
+      if(!u || !isSha(COMMIT_SHA)) return u;
+      try{
+        const url=new URL(u, location.href);
+        if(url.hostname==='raw.githubusercontent.com'){
+          const p=url.pathname.split('/').filter(Boolean);
+          if(p.length>=3 && p[0]===ORG && p[1]===REPO && (p[2]==='main'||p[2]==='HEAD')){
+            p[2]=COMMIT_SHA; url.pathname='/'+p.join('/');
+          }
+        }
+        return url.toString();
+      }catch(_){ return u; }
+    }
+    function addTag(u){
+      if(!u) return u;
+      try{ const url=new URL(u, location.href); url.searchParams.set('v', TAG); return url.toString(); }
+      catch(_){ return u + (u.includes('?')?'&':'?') + 'v=' + encodeURIComponent(TAG); }
+    }
+    function bustURL(u){ return addTag(rewriteRawToSha(u)); }
+
+    // srcset
+    function bustSrcset(s){
+      if(!s) return s;
+      return s.split(',').map(part=>{
+        const t=part.trim(); const sp=t.split(/\s+/); const url=sp[0]; const desc=sp.slice(1).join(' ');
+        const b=bustURL(url); return desc ? (b+' '+desc) : b;
+      }).join(', ');
+    }
+
+    // Aplicar a un elemento
+    function applyToElement(el){
+      if(!el) return;
+      if(el.tagName==='IMG'){
+        const raw = el.getAttribute('src') || el.src || '';
+        if(raw){ const b=bustURL(raw); if(raw!==b) el.src=b; }
+        const ss = el.getAttribute('srcset');
+        if(ss){ const bss=bustSrcset(ss); if(bss!==ss) el.setAttribute('srcset', bss); }
+      }else if(el.tagName==='SOURCE'){
+        const ss = el.getAttribute('srcset');
+        if(ss){ const bss=bustSrcset(ss); if(bss!==ss) el.setAttribute('srcset', bss); }
+        const s2 = el.getAttribute('src');
+        if(s2){ const bs=bustURL(s2); if(bs!==s2) el.setAttribute('src', bs); }
+      }else{
+        const st = el.style && el.style.backgroundImage;
+        if(st && /url\((["']?)(.+?)\1\)/.test(st)){
+          const url = st.replace(/^.*url\((["']?)(.+?)\1\).*$/, '$2');
+          if(url){ const b=bustURL(url); if(url!==b) el.style.backgroundImage=`url("${b}")`; }
+        }
+      }
+    }
+    function applyToTree(root){
+      root.querySelectorAll && root.querySelectorAll('img,source,[style*="background-image"]').forEach(applyToElement);
+    }
+
+    // re-aplicar cuando llega SHA nuevo
+    document.addEventListener('mgvsha:update', (e)=>{
+      const sha=e && e.detail && e.detail.sha;
+      if(sha && sha!==COMMIT_SHA){
+        COMMIT_SHA=sha; TAG=sha;
+        const css=document.getElementById('mainCss'); if(css && css.href) css.href = addTag(css.href);
+        applyToTree(document);
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function(){
+      const css=document.getElementById('mainCss'); if(css && css.href) css.href = addTag(css.href);
+      applyToTree(document);
+      const obs=new MutationObserver(muts=>{
+        muts.forEach(m=>{
+          if(m.type==='attributes' && (m.attributeName==='src' || m.attributeName==='srcset' || m.attributeName==='style')) applyToElement(m.target);
+          if(m.addedNodes && m.addedNodes.length){
+            m.addedNodes.forEach(n=>{ if(n.nodeType===1){ applyToElement(n); applyToTree(n); }});
+          }
+        });
+      });
+      obs.observe(document.body, {childList:true, subtree:true, attributes:true, attributeFilter:['src','srcset','style']});
+      // expongo por si otro script lo necesita
+      window.__mgvBustURL = bustURL;
+    });
+  })();
+  </script>
+  <!-- ============================================================ -->
+
+  <script>
+    window.ENV = { GH_OWNER: "ludmilasolutions", GH_REPO: "mgv", GH_BRANCH: "main" };
+  </script>
+  <script src="assets/js/fetch-raw-patch.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Topbar fija con búsqueda -->
+  <div class="topbar">
+    <header class="header container">
+      <img src="assets/logo.png" alt="MGV"/>
+      <div class="title" id="storeTitle">MGV Librería–Regalería</div>
+      <div class="search">
+        <input id="q" placeholder="Buscar..." aria-label="Buscar productos"/>
+      </div>
+    </header>
+  </div>
+
+  <!-- Carrusel de banners -->
+  <section class="container">
+    <div id="bannerCarousel" class="carousel" aria-label="Promociones"></div>
+  </section>
+
+  <!-- Píldoras de categorías -->
+  <section class="container">
+    <div id="categoryPills" class="badges" aria-label="Categorías"></div>
+  </section>
+
+  <!-- Catálogo -->
+  <main class="container" role="main">
+    <div id="productGrid" class="grid"></div>
+  </main>
+
+  <!-- FAB y Carrito -->
+  <button id="cartFab" class="cart-fab" aria-label="Abrir carrito">🛒 <span id="cartCount">0</span></button>
+
+  <div id="cartPanel" class="cart-panel" style="display:none" aria-modal="true" role="dialog">
+    <div class="cart-header">
+      <strong>Tu carrito</strong>
+      <button id="closeCart" class="close-btn" aria-label="Cerrar">✕</button>
+    </div>
+
+    <div id="cartScroll" class="cart-scroll">
+      <div class="cart-top">
+        <div class="field">
+          <label>Método de entrega</label>
+          <div id="shipMethod" class="segmented">
+            <button class="seg active" data-method="retiro" type="button">🏬 <span>Retiro</span></button>
+            <button class="seg" data-method="envio"  type="button">🚚 <span>Envío</span></button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="customerName">Tu nombre</label>
+          <input id="customerName" type="text" placeholder="Tu nombre"/>
+        </div>
+      </div>
+
+      <!-- Resumen único -->
+      <section id="cartSummary" class="cart-summary">
+        <div class="sum-title">Resumen</div>
+        <ul id="sumList" class="sum-grid" aria-live="polite"></ul>
+        <div id="cartBreakdown" class="cart-breakdown"></div>
+      </section>
+    </div>
+
+    <div id="cartFooter" class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span><strong id="cartTotal">$ 0</strong>
+      </div>
+      <button id="checkoutBtn" class="btn">Finalizar por WhatsApp</button>
+    </div>
+  </div>
+
+  <!-- Promo inferior -->
+  <hr class="soft-divider" />
+  <section class="container">
+    <div class="promo-card">
+      <div class="promo-header">
+        <h3>¿Querés una web como esta para tu negocio?</h3>
+        <div class="promo-badges">
+          <span class="promo-pill">⚡ Entrega rápida</span>
+          <span class="promo-pill">📱 100% responsive</span>
+          <span class="promo-pill">🧩 Panel para productos</span>
+          <span class="promo-pill">🔒 Hosting & dominio opcional</span>
+          <span class="promo-pill">✉️ Soporte por email</span>
+        </div>
+      </div>
+      <div class="promo-actions">
+        <a class="btn promo-btn" id="promoMail" target="_blank" rel="noopener"
+           href="https://wa.me/5493412272899?text=Hola,%20quiero%20presupuesto%20para%20una%20web">Pedí tu presupuesto</a>
+        <div class="promo-small">Página web creada por <strong>Sebastian Mascali</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footerInfo" class="container footer"></footer>
+
+  <script src="assets/js/promo.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

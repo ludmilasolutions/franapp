@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ProductosLocal",
+  "type": "object",
+  "required": [
+    "slug",
+    "categorias"
+  ],
+  "properties": {
+    "slug": {
+      "type": "string"
+    },
+    "categorias": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "nombre",
+          "items"
+        ],
+        "properties": {
+          "nombre": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "nombre",
+                "precio"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "nombre": {
+                  "type": "string"
+                },
+                "precio": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "descripcion": {
+                  "type": "string"
+                },
+                "imagen": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

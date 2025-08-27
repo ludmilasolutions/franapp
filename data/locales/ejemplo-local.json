@@ -1,0 +1,46 @@
+{
+  "slug": "ejemplo-local",
+  "nombre": "Ejemplo Local",
+  "categoria": "Rotisería",
+  "descripcion": "Comidas caseras para llevar.",
+  "imagenes": {
+    "logo": "https://example.com/logo.png",
+    "banner": "https://example.com/banner.jpg"
+  },
+  "contacto": {
+    "whatsapp": "+5493416000000",
+    "instagram": "https://instagram.com/ejemplo",
+    "facebook": "https://facebook.com/ejemplo",
+    "web": "https://ejemplo.com"
+  },
+  "direccion": {
+    "texto": "San Martín 1234, Rosario",
+    "map_url": "https://maps.google.com/?q=San+Mart%C3%ADn+1234+Rosario"
+  },
+  "horarios": "Lun a Dom 11:30–15:00 y 19:30–23:30",
+  "entrega": {
+    "metodos": [
+      "retiro",
+      "envio"
+    ],
+    "zonas": [
+      {
+        "zona": "Centro",
+        "costo": 1200
+      },
+      {
+        "zona": "Pichincha",
+        "costo": 1500
+      }
+    ]
+  },
+  "pago": [
+    "efectivo",
+    "transferencia",
+    "mercadopago"
+  ],
+  "estado": "abierto",
+  "orden": 10,
+  "destacado": false,
+  "creado_ts": "2025-08-27T19:31:22.133062Z"
+}

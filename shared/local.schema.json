@@ -1,0 +1,173 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Local",
+  "type": "object",
+  "required": [
+    "slug",
+    "nombre",
+    "categoria",
+    "contacto",
+    "direccion",
+    "entrega",
+    "pago",
+    "estado",
+    "orden"
+  ],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]{3,}$"
+    },
+    "nombre": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 80
+    },
+    "categoria": {
+      "type": "string",
+      "enum": [
+        "Rotisería",
+        "Librería",
+        "Kiosco",
+        "Verdulería",
+        "Panadería",
+        "Bebidas",
+        "Electrónica",
+        "Otro"
+      ]
+    },
+    "descripcion": {
+      "type": "string",
+      "maxLength": 400
+    },
+    "imagenes": {
+      "type": "object",
+      "properties": {
+        "logo": {
+          "type": "string",
+          "format": "uri"
+        },
+        "banner": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "additionalProperties": false
+    },
+    "contacto": {
+      "type": "object",
+      "required": [
+        "whatsapp"
+      ],
+      "properties": {
+        "whatsapp": {
+          "type": "string",
+          "pattern": "^\\+?\\d{10,15}$"
+        },
+        "instagram": {
+          "type": "string"
+        },
+        "facebook": {
+          "type": "string"
+        },
+        "web": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "direccion": {
+      "type": "object",
+      "required": [
+        "texto"
+      ],
+      "properties": {
+        "texto": {
+          "type": "string"
+        },
+        "map_url": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "horarios": {
+      "type": "string"
+    },
+    "entrega": {
+      "type": "object",
+      "required": [
+        "metodos",
+        "zonas"
+      ],
+      "properties": {
+        "metodos": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "retiro",
+              "envio"
+            ]
+          },
+          "minItems": 1
+        },
+        "zonas": {
+          "description": "Tabla de costo por barrio/zona (editable en panel)",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "zona",
+              "costo"
+            ],
+            "properties": {
+              "zona": {
+                "type": "string"
+              },
+              "costo": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "pago": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "efectivo",
+          "transferencia",
+          "mercadopago",
+          "debito",
+          "credito"
+        ]
+      },
+      "minItems": 1
+    },
+    "estado": {
+      "type": "string",
+      "enum": [
+        "abierto",
+        "cerrado"
+      ]
+    },
+    "orden": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "destacado": {
+      "type": "boolean",
+      "default": false
+    },
+    "creado_ts": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

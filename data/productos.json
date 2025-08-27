@@ -1,0 +1,82 @@
+[
+  {
+    "id": "p1",
+    "nombre": "Sandwichera, Grill y Waffle 3 en 1 Dinax",
+    "precio": 50000,
+    "categoria": "Electro",
+    "imagen": "https://raw.githubusercontent.com/ludmilasolutions/mgv/e1f72439239cfeb67ae863eb1a059dd8a550c561/assets/uploads/2025/08/1756238300785_screenshot_20250826-163827.png",
+    "descripcion": "Placas intercambiables: triángulos, grill y waffle. Antiadherente e indicadores de encendido/listo."
+  },
+  {
+    "id": "p2",
+    "nombre": "Minipimer Sokany SK-02013 2 en 1 (600W)",
+    "precio": 35000,
+    "categoria": "Electro",
+    "imagen": "https://raw.githubusercontent.com/ludmilasolutions/mgv/116950d918a1e168e713c995be0766792357c59b/assets/uploads/2025/08/1756238315044_screenshot_20250826-163832.png",
+    "descripcion": "Mixer de mano 2 en 1 con vaso. Pie de acero inoxidable. 600W."
+  },
+  {
+    "id": "p3",
+    "nombre": "Mate tipo Stanley con bombilla",
+    "precio": 15000,
+    "categoria": "Regalería",
+    "imagen": "https://raw.githubusercontent.com/ludmilasolutions/mgv/69327bc4b8e5a31a8a430f27542f517bb6df2960/assets/uploads/2025/08/1756238319874_screenshot_20250826-163838.png",
+    "descripcion": "Incluye bombilla. Colores sujetos a stock."
+  },
+  {
+    "id": "p4",
+    "nombre": "Lápiz Corrector Divo Ezco",
+    "precio": 550,
+    "categoria": "Librería",
+    "imagen": "https://raw.githubusercontent.com/ludmilasolutions/mgv/0f334eed26a1530446ec05106e80a599fdae259a/assets/uploads/2025/08/1756238369127_screenshot_20250826-163850.png",
+    "descripcion": "Lápiz corrector de punta fina. Secado rápido."
+  },
+  {
+    "id": "p5",
+    "nombre": "Cartulinas de colores (unidad)",
+    "precio": 800,
+    "categoria": "Librería",
+    "imagen": "https://raw.githubusercontent.com/ludmilasolutions/mgv/53a6aabe0276fa3a147b77d09ce2a8e4c3771c29/assets/uploads/2025/08/1756238376241_screenshot_20250826-163901.png",
+    "descripcion": "Cartulinas de colores surtidos. Precio por unidad."
+  },
+  {
+    "id": "p6",
+    "nombre": "Lápices Maped Color'Peps Strong x24",
+    "precio": 4000,
+    "categoria": "Librería",
+    "imagen": "https://raw.githubusercontent.com/ludmilasolutions/mgv/a9a59dc0d00f1f492abfaf4f682fff76cbfbea4e/assets/uploads/2025/08/1756238384079_screenshot_20250826-163738.png",
+    "descripcion": "Estuche x24. Mina 3.2 mm, extra resistente (resina)."
+  },
+  {
+    "id": "p7",
+    "nombre": "Lápices de colores Ezco Mito x12",
+    "precio": 770,
+    "categoria": "Librería",
+    "imagen": "https://raw.githubusercontent.com/ludmilasolutions/mgv/70d42a2ade5bf18fecdce3b91b8299d417d8ead4/assets/uploads/2025/08/1756238388404_screenshot_20250826-163747.png",
+    "descripcion": "Caja x12. Trazo suave y parejo."
+  },
+  {
+    "id": "p8",
+    "nombre": "Termo con taza (diseños varios)",
+    "precio": 15500,
+    "categoria": "Regalería",
+    "imagen": "https://raw.githubusercontent.com/ludmilasolutions/mgv/1fbfd3ae6b35835b7a89e314dc2a659c1e3c9a41/assets/uploads/2025/08/1756238393802_screenshot_20250826-163811.png",
+    "descripcion": "Termo con tapa/taza. Colores y diseños sujetos a stock."
+  },
+  {
+    "id": "p9",
+    "nombre": "Sandwichera Eléctrica 700W Kanji",
+    "precio": 26000,
+    "categoria": "Electro",
+    "imagen": "https://raw.githubusercontent.com/ludmilasolutions/mgv/a8a1839b6f24b90b0567abde0907a99903f94bc4/assets/uploads/2025/08/1756238398719_screenshot_20250826-163816.png",
+    "descripcion": "Placas triangulares antiadherentes. Indicadores de encendido/listo."
+  },
+  {
+    "id": "p10",
+    "nombre": "Sandwichera Panini/Grill Oryx OR-170",
+    "precio": 42000,
+    "categoria": "Electro",
+    "imagen": "https://raw.githubusercontent.com/ludmilasolutions/mgv/0fe9680862faed9c0686a35f68ad567f3587b6f6/assets/uploads/2025/08/1756238412081_screenshot_20250826-163822.png",
+    "descripcion": "Parrilla tipo panini con tapa flotante. Ideal para sándwiches y grill."
+  }
+]
