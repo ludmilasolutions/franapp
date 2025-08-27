@@ -1,4 +1,122 @@
 {
-  "generatedAt": "2025-08-27T21:27:51.170527Z",
-  "files": []
+  "generatedAt": "2025-08-27T21:34:04.900910Z",
+  "files": [
+    {
+      "slug": "pizzeria-don-remo",
+      "nombre": "Pizzería Don Remo",
+      "categoria": "pizzería",
+      "direccion": "San Martín 1234, Rosario",
+      "mapa": "https://maps.google.com/?q=San+Mart%C3%ADn+1234+Rosario",
+      "whatsapp": "+5493415551111",
+      "horarios": "Lun-Dom 11:30–15:00 / 19:30–00:00",
+      "entrega": {
+        "metodos": [
+          "retiro",
+          "envio"
+        ],
+        "zonas": [
+          {
+            "nombre": "Centro",
+            "precio": 1200
+          },
+          {
+            "nombre": "Echesortu",
+            "precio": 1500
+          },
+          {
+            "nombre": "Fisherton",
+            "precio": 2000
+          }
+        ]
+      },
+      "pago": [
+        "efectivo",
+        "mp",
+        "tarjeta"
+      ],
+      "imagenes": {
+        "logo": "https://placehold.co/256x256?text=Don+Remo",
+        "banner": "https://placehold.co/1200x400?text=Pizzeria+Don+Remo"
+      },
+      "descripcion": "Masa madre, horno de piedra. Promos 2x1 los martes.",
+      "social": {
+        "instagram": "https://instagram.com/donremo.pizza"
+      }
+    },
+    {
+      "slug": "kiosco-azul",
+      "nombre": "Kiosco Azul",
+      "categoria": "kiosco",
+      "direccion": "Santa Fe 2100, Rosario",
+      "mapa": "https://maps.google.com/?q=Santa+Fe+2100+Rosario",
+      "whatsapp": "+5493415552222",
+      "horarios": "Lun-Sáb 08:00–23:00 / Dom 10:00–22:00",
+      "entrega": {
+        "metodos": [
+          "retiro",
+          "envio"
+        ],
+        "zonas": [
+          {
+            "nombre": "Centro",
+            "precio": 800
+          },
+          {
+            "nombre": "Macrocentro",
+            "precio": 1000
+          }
+        ]
+      },
+      "pago": [
+        "efectivo",
+        "mp"
+      ],
+      "imagenes": {
+        "logo": "https://placehold.co/256x256?text=Kiosco+Azul",
+        "banner": "https://placehold.co/1200x400?text=Kiosco+Azul"
+      },
+      "descripcion": "Bebidas frías, snacks y recargas.",
+      "social": {
+        "instagram": "https://instagram.com/kiosco.azul"
+      }
+    },
+    {
+      "slug": "libreria-lumen",
+      "nombre": "Librería Lumen",
+      "categoria": "librería",
+      "direccion": "Córdoba 950, Rosario",
+      "mapa": "https://maps.google.com/?q=C%C3%B3rdoba+950+Rosario",
+      "whatsapp": "+5493415553333",
+      "horarios": "Lun-Vie 09:00–19:00 / Sáb 09:00–13:00",
+      "entrega": {
+        "metodos": [
+          "retiro",
+          "envio"
+        ],
+        "zonas": [
+          {
+            "nombre": "Centro",
+            "precio": 900
+          },
+          {
+            "nombre": "Parque España",
+            "precio": 1100
+          }
+        ]
+      },
+      "pago": [
+        "efectivo",
+        "mp",
+        "tarjeta"
+      ],
+      "imagenes": {
+        "logo": "https://placehold.co/256x256?text=Lumen",
+        "banner": "https://placehold.co/1200x400?text=Libreria+Lumen"
+      },
+      "descripcion": "Útiles escolares, arte y fotocopias.",
+      "social": {
+        "web": "https://librerialumen.example.com"
+      }
+    }
+  ]
 }

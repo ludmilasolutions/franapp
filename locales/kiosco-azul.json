@@ -1,0 +1,37 @@
+{
+  "slug": "kiosco-azul",
+  "nombre": "Kiosco Azul",
+  "categoria": "kiosco",
+  "direccion": "Santa Fe 2100, Rosario",
+  "mapa": "https://maps.google.com/?q=Santa+Fe+2100+Rosario",
+  "whatsapp": "+5493415552222",
+  "horarios": "Lun-Sáb 08:00–23:00 / Dom 10:00–22:00",
+  "entrega": {
+    "metodos": [
+      "retiro",
+      "envio"
+    ],
+    "zonas": [
+      {
+        "nombre": "Centro",
+        "precio": 800
+      },
+      {
+        "nombre": "Macrocentro",
+        "precio": 1000
+      }
+    ]
+  },
+  "pago": [
+    "efectivo",
+    "mp"
+  ],
+  "imagenes": {
+    "logo": "https://placehold.co/256x256?text=Kiosco+Azul",
+    "banner": "https://placehold.co/1200x400?text=Kiosco+Azul"
+  },
+  "descripcion": "Bebidas frías, snacks y recargas.",
+  "social": {
+    "instagram": "https://instagram.com/kiosco.azul"
+  }
+}

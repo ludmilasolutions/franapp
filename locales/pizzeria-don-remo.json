@@ -1,0 +1,42 @@
+{
+  "slug": "pizzeria-don-remo",
+  "nombre": "Pizzería Don Remo",
+  "categoria": "pizzería",
+  "direccion": "San Martín 1234, Rosario",
+  "mapa": "https://maps.google.com/?q=San+Mart%C3%ADn+1234+Rosario",
+  "whatsapp": "+5493415551111",
+  "horarios": "Lun-Dom 11:30–15:00 / 19:30–00:00",
+  "entrega": {
+    "metodos": [
+      "retiro",
+      "envio"
+    ],
+    "zonas": [
+      {
+        "nombre": "Centro",
+        "precio": 1200
+      },
+      {
+        "nombre": "Echesortu",
+        "precio": 1500
+      },
+      {
+        "nombre": "Fisherton",
+        "precio": 2000
+      }
+    ]
+  },
+  "pago": [
+    "efectivo",
+    "mp",
+    "tarjeta"
+  ],
+  "imagenes": {
+    "logo": "https://placehold.co/256x256?text=Don+Remo",
+    "banner": "https://placehold.co/1200x400?text=Pizzeria+Don+Remo"
+  },
+  "descripcion": "Masa madre, horno de piedra. Promos 2x1 los martes.",
+  "social": {
+    "instagram": "https://instagram.com/donremo.pizza"
+  }
+}

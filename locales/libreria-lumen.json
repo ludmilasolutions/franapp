@@ -1,0 +1,38 @@
+{
+  "slug": "libreria-lumen",
+  "nombre": "Librería Lumen",
+  "categoria": "librería",
+  "direccion": "Córdoba 950, Rosario",
+  "mapa": "https://maps.google.com/?q=C%C3%B3rdoba+950+Rosario",
+  "whatsapp": "+5493415553333",
+  "horarios": "Lun-Vie 09:00–19:00 / Sáb 09:00–13:00",
+  "entrega": {
+    "metodos": [
+      "retiro",
+      "envio"
+    ],
+    "zonas": [
+      {
+        "nombre": "Centro",
+        "precio": 900
+      },
+      {
+        "nombre": "Parque España",
+        "precio": 1100
+      }
+    ]
+  },
+  "pago": [
+    "efectivo",
+    "mp",
+    "tarjeta"
+  ],
+  "imagenes": {
+    "logo": "https://placehold.co/256x256?text=Lumen",
+    "banner": "https://placehold.co/1200x400?text=Libreria+Lumen"
+  },
+  "descripcion": "Útiles escolares, arte y fotocopias.",
+  "social": {
+    "web": "https://librerialumen.example.com"
+  }
+}
